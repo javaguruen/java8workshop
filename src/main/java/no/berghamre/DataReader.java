@@ -29,4 +29,9 @@ public class DataReader {
     }
     return data;
   }
+
+    public static List<String> readDataStripHeader() {
+        List<String> strings = readData();
+        return strings.subList(1, strings.size());
+    }
 }
