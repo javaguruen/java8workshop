@@ -1,8 +1,10 @@
 package no.berghamre;
 
+import no.berghamre.data.IncomeStatistics;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -13,6 +15,12 @@ public class DataReaderTest {
   public void readFromFile(){
     final List<String> data = DataReader.readData();
     Assert.assertThat("Should be 39 lines", data.size(), is(39));
+  }
+
+  @Test
+  public void readFromFileStream() throws IOException {
+    final List<IncomeStatistics> data = DataReader.read();
+    Assert.assertThat("Should be 570 lines", data.size(), is(570));
   }
 
     @Test

@@ -2,6 +2,7 @@ package no.berghamre.util;
 
 import no.berghamre.DataReader;
 import no.berghamre.data.IncomeStatistics;
+import no.berghamre.util.fasit.Exercise01Impl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,8 +19,8 @@ public class Exercise02ImplTest {
 
   @Before
   public void setUp() throws Exception {
-    IncomeListUtil ilu = new no.berghamre.util.fasit.IncomeListUtilImpl();
-    statistics = ilu.decodeLinesUsingForEach(DataReader.readDataStripHeader());
+    Exercise01 ilu = new Exercise01Impl();
+    statistics = DataReader.decodeLinesUsingForEach();
     exercises02 = new Exercise02Impl();
   }
 

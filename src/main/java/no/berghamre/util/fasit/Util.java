@@ -11,6 +11,10 @@ import java.util.function.Predicate;
  */
 public class Util {
 
+  public static String getCounty(IncomeStatistics is){
+      return is.county;
+  }
+
   public static Boolean isMale( IncomeStatistics statistics ){
     return statistics.sex == Gender.male;
   }
