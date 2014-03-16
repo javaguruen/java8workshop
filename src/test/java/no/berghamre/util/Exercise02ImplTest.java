@@ -2,7 +2,6 @@ package no.berghamre.util;
 
 import no.berghamre.DataReader;
 import no.berghamre.data.IncomeStatistics;
-import no.berghamre.util.fasit.Exercise02Impl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +18,6 @@ public class Exercise02ImplTest {
 
   @Before
   public void setUp() throws Exception {
-    Exercise01 ilu = new Exercise01Impl();
     statistics = DataReader.decodeLinesUsingForEach();
     exercises02 = new Exercise02Impl();
   }
@@ -68,6 +66,6 @@ public class Exercise02ImplTest {
   @Test
   public void testGetSumPerCountyPerYear() {
     List<IncomeStatistics> sumPerCountyPerYear = exercises02.getSumPerCountyPerYear(statistics);
-    assertThat("sdsd", 1, is(1));
+    assertThat("find something to assert on", 1, is(2));
   }
 }
