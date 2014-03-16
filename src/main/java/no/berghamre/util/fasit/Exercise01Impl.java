@@ -4,6 +4,7 @@ import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
 import no.berghamre.util.Exercise01;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -11,37 +12,44 @@ public class Exercise01Impl implements Exercise01 {
 
     @Override
     public List<IncomeStatistics> getStatisticsForGender(List<IncomeStatistics> stats, Gender gender) {
-        stats.removeIf(is -> is.sex != gender);
-        return stats;
+        ArrayList<IncomeStatistics> retval = new ArrayList<>(stats);
+        retval.removeIf(is -> is.sex != gender);
+        return retval;
     }
 
     @Override
     public List<IncomeStatistics> getStatisticsForYearsBefore(List<IncomeStatistics> stats, int year) {
-        stats.removeIf(is -> is.year >= year);
-        return stats;
+        ArrayList<IncomeStatistics> retval = new ArrayList<>(stats);
+        retval.removeIf(is -> is.year >= year);
+        return retval;
     }
 
     @Override
     public List<IncomeStatistics> getStatisticsForYearsAfter(List<IncomeStatistics> stats, int year) {
-        stats.removeIf(is -> is.year <= year);
-        return stats;
+        ArrayList<IncomeStatistics> retval = new ArrayList<>(stats);
+        retval.removeIf(is -> is.year <= year);
+        return retval;
     }
 
     @Override
     public List<IncomeStatistics> getStatisticsForIncomeLessThan(List<IncomeStatistics> stats, int income) {
-        stats.removeIf(iS -> iS.averageIncome >= income);
-        return stats;
+        ArrayList<IncomeStatistics> retval = new ArrayList<>(stats);
+        retval.removeIf(iS -> iS.averageIncome >= income);
+        return retval;
     }
 
     @Override
     public List<IncomeStatistics> getStatisticsForIncomeMoreThan(List<IncomeStatistics> stats, int income) {
-        stats.removeIf(is -> is.averageIncome <= income);
-        return stats;
+        ArrayList<IncomeStatistics> retval = new ArrayList<>(stats);
+        retval.removeIf(is -> is.averageIncome <= income);
+        return retval;
     }
 
     @Override
     public List<IncomeStatistics> getStatisticsForIncomeMoreThanSortedByIncomeDesc(List<IncomeStatistics> stats, int income) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<IncomeStatistics> retval = getStatisticsForIncomeMoreThan(stats, income);
+        retval.sort(byIncome().reversed());
+        return retval;
     }
 
     @Override
