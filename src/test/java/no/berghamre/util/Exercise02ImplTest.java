@@ -2,7 +2,7 @@ package no.berghamre.util;
 
 import no.berghamre.DataReader;
 import no.berghamre.data.IncomeStatistics;
-import no.berghamre.util.fasit.Exercise01Impl;
+import no.berghamre.util.fasit.Exercise02Impl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -61,8 +61,13 @@ public class Exercise02ImplTest {
 
   @Test
   public void testGetTopTwoCountiesForMalesIn2010() {
-    List<String> minYear = exercises02.getTopTwoCountiesForMalesIn2010(statistics);
+    List<String> minYear = exercises02.getNr3And4CountiesForMalesIn2010(statistics);
     assertThat(minYear, is( Arrays.asList("Hedmark", "Finnmark")));
   }
 
+  @Test
+  public void testGetSumPerCountyPerYear() {
+    List<IncomeStatistics> sumPerCountyPerYear = exercises02.getSumPerCountyPerYear(statistics);
+    assertThat("sdsd", 1, is(1));
+  }
 }

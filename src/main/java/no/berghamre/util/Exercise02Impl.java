@@ -32,7 +32,17 @@ public class Exercise02Impl implements Exercises02 {
   }
 
   @Override
-  public List<String> getTopTwoCountiesForMalesIn2010(List<IncomeStatistics> incomes) {
+  public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> incomes) {
+    return null;
+  }
+
+  @Override
+  public IncomeStatistics getMaximum(List<IncomeStatistics> incomes) {
+    return null;
+  }
+
+  @Override
+  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> incomes) {
     return null;
   }
 }
