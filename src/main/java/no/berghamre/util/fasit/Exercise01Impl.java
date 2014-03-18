@@ -59,7 +59,7 @@ public class Exercise01Impl implements Exercise01 {
 
     @Override
     public Comparator<IncomeStatistics> byCounty() {
-        return Comparator.comparing(Util::getCounty, String.CASE_INSENSITIVE_ORDER);
+        return Comparator.comparing((IncomeStatistics is) -> is.county , String.CASE_INSENSITIVE_ORDER);
     }
 
     @Override
