@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class Exercise01Impl implements Exercise01 {
+public class Exercise01Impl implements Exercises01 {
     @Override
     public List<IncomeStatistics> getStatisticsForGender(List<IncomeStatistics> stats, Gender gender) {
         return Collections.emptyList(); 

@@ -2,13 +2,13 @@ package no.berghamre.util.fasit;
 
 import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
-import no.berghamre.util.Exercise01;
+import no.berghamre.util.Exercises01;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Exercise01Impl implements Exercise01 {
+public class Exercise01Impl implements Exercises01 {
 
     @Override
     public List<IncomeStatistics> getStatisticsForGender(List<IncomeStatistics> stats, Gender gender) {

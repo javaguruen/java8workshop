@@ -6,7 +6,7 @@ import no.berghamre.data.IncomeStatistics;
 import java.util.Comparator;
 import java.util.List;
 
-public interface Exercise01 {
+public interface Exercises01 {
     List<IncomeStatistics> getStatisticsForGender(List<IncomeStatistics> stats, Gender gender);
     List<IncomeStatistics> getStatisticsForYearsBefore(List<IncomeStatistics> stats, int year);
     List<IncomeStatistics> getStatisticsForYearsAfter(List<IncomeStatistics> stats, int year);

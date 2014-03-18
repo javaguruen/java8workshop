@@ -17,7 +17,7 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class Exercise01ImplTest {
 
-    private Exercise01 ilu;
+    private Exercises01 ilu;
     private List<IncomeStatistics> statistics;
 
     @Before
