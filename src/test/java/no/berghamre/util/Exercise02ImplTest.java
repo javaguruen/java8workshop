@@ -2,6 +2,8 @@ package no.berghamre.util;
 
 import no.berghamre.DataReader;
 import no.berghamre.data.IncomeStatistics;
+import no.berghamre.util.fasit.*;
+import no.berghamre.util.fasit.Exercise02Impl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,20 +54,20 @@ public class Exercise02ImplTest {
   }
 
   @Test
-  public void testGetTopThreeYearsForRogaland2() {
+  public void testGetTopThreeYearsForRogaland() {
     List<Integer> minYear = exercises02.getTopThreeYearsForRogaland(statistics);
-    assertThat(minYear, is(Arrays.asList( 1997, 1998, 1999)));
+    assertThat(minYear, is(Arrays.asList( 2011, 2010, 2008)));
   }
 
   @Test
-  public void testGetTopTwoCountiesForMalesIn2010() {
+  public void testGetNr3And4CountiesForMalesIn2010() {
     List<String> minYear = exercises02.getNr3And4CountiesForMalesIn2010(statistics);
-    assertThat(minYear, is( Arrays.asList("Hedmark", "Finnmark")));
+    assertThat(minYear, is( Arrays.asList("Oslo", "Hordaland")));
   }
 
   @Test
   public void testGetSumPerCountyPerYear() {
     List<IncomeStatistics> sumPerCountyPerYear = exercises02.getSumPerCountyPerYear(statistics);
-    assertThat("find something to assert on", 1, is(2));
+    assertThat("find something to assert on", sumPerCountyPerYear.size(), is(19));
   }
 }

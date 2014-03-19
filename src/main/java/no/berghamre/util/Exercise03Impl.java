@@ -20,19 +20,37 @@ public class Exercise03Impl implements Exercises03 {
         return Collections.EMPTY_MAP;
     }
 
+
+  /**
+   * Hint: http://en.wikipedia.org/wiki/Arithmetic_progression
+   * @param start
+   * @param difference
+   * @return
+   */
     @Override
     public LongStream arithmeticProgression(long start, long difference) {
         return LongStream.empty();
     }
 
+  /**
+   * Hint: always start with "1" see: http://en.wikipedia.org/wiki/Look-and-say_sequence
+   * @return
+   */
     @Override
     public Stream<String> lookAndSay() {
         return Stream.<String>empty();
     }
 
+  /**
+   * Helper for lookAndSay. Tip: make this recursive
+   * @param digits  current digits
+   * @param prev  previous digit
+   * @param curlen current length of equal digits
+   * @return string representation of the look-and-say for the part of equal digits
+   */
     private String  generateNext(String digits , char prev, int curlen){
-        return "";
-    }
+    return "";
+  }
 
     @Override
     public LongStream fibonacci() {

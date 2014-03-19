@@ -4,10 +4,7 @@ import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
 import no.berghamre.util.Exercises02;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.OptionalInt;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -62,9 +59,10 @@ public class Exercise02Impl implements Exercises02 {
 
   @Override
   public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> incomes) {
+    Comparator<IncomeStatistics> byIncome = Util::compareByIncome;
     List<Integer> rogaland = incomes.stream()
         .filter( Util.isCounty("Rogaland") )
-        .sorted( Util::compareByIncome )
+        .sorted( byIncome.reversed() )
         .limit(3)
         .mapToInt(is -> is.year)
         .boxed()
@@ -73,9 +71,10 @@ public class Exercise02Impl implements Exercises02 {
   }
 
   public List<Integer> getTopThreeYearsForRogaland2(List<IncomeStatistics> incomes) {
+    Comparator<IncomeStatistics> byIncome = Util::compareByIncome;
     List<Integer> rogaland = incomes.stream()
         .filter( Util.isCounty( "Rogaland"))
-        .sorted( Util::compareByIncome )
+        .sorted(byIncome.reversed())
         .limit(3)
         .map(is -> is.year)
         .collect(Collectors.<Integer>toList());
@@ -88,7 +87,8 @@ public class Exercise02Impl implements Exercises02 {
     List<String> counties = incomes.stream()
         .filter( Util::isMale)
         .filter( Util.isYear(2010) )
-        .sorted(Util::compareByIncome)
+        .sorted( ((Comparator<IncomeStatistics>) Util::compareByIncome).reversed()  )
+        .skip(2)
         .limit(2)
         .map(is -> is.county)
         .collect(Collectors.toList());
@@ -101,6 +101,7 @@ public class Exercise02Impl implements Exercises02 {
     Map<String, List<IncomeStatistics>> collect = incomes.stream()
         .filter(Util.isYear(2011))
         .collect(Collectors.groupingBy(is -> is.county));
+
     List<IncomeStatistics> summed = collect.entrySet().stream()
         .map(entry -> new IncomeStatistics(entry.getKey(), Gender.male, 2011, entry.getValue().stream().mapToInt(is -> is.averageIncome).sum()))
         .collect( Collectors.toList());
