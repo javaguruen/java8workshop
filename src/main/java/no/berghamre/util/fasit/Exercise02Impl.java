@@ -57,44 +57,6 @@ public class Exercise02Impl implements Exercises02 {
     return hordaland.get().year;
   }
 
-  @Override
-  public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> incomes) {
-    Comparator<IncomeStatistics> byIncome = Util::compareByIncome;
-    List<Integer> rogaland = incomes.stream()
-        .filter( Util.isCounty("Rogaland") )
-        .sorted( byIncome.reversed() )
-        .limit(3)
-        .mapToInt(is -> is.year)
-        .boxed()
-        .collect(Collectors.<Integer>toList());
-    return rogaland;
-  }
-
-  public List<Integer> getTopThreeYearsForRogaland2(List<IncomeStatistics> incomes) {
-    Comparator<IncomeStatistics> byIncome = Util::compareByIncome;
-    List<Integer> rogaland = incomes.stream()
-        .filter( Util.isCounty( "Rogaland"))
-        .sorted(byIncome.reversed())
-        .limit(3)
-        .map(is -> is.year)
-        .collect(Collectors.<Integer>toList());
-    System.out.println("Top 3 years for Rogaland: " + rogaland);
-    return rogaland;
-  }
-
-  @Override
-  public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> incomes) {
-    List<String> counties = incomes.stream()
-        .filter( Util::isMale)
-        .filter( Util.isYear(2010) )
-        .sorted( ((Comparator<IncomeStatistics>) Util::compareByIncome).reversed()  )
-        .skip(2)
-        .limit(2)
-        .map(is -> is.county)
-        .collect(Collectors.toList());
-    System.out.println("Top 2 counties for males in 2010: " + counties);
-    return counties;
-  }
 
   @Override
   public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> incomes){

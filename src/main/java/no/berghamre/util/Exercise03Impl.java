@@ -21,6 +21,16 @@ public class Exercise03Impl implements Exercises03 {
     }
 
 
+    @Override
+    public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> incomes) {
+    return null;
+  }
+
+    @Override
+    public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> incomes) {
+    return null;
+  }
+
   /**
    * Hint: http://en.wikipedia.org/wiki/Arithmetic_progression
    * @param start

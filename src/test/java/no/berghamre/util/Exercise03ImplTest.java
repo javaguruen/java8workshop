@@ -5,6 +5,7 @@ import no.berghamre.data.IncomeStatistics;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,7 +36,20 @@ public class Exercise03ImplTest {
 
     }
 
-    @Test
+  @Test
+  public void testGetTopThreeYearsForRogaland() {
+    List<Integer> minYear = exercises03.getTopThreeYearsForRogaland(statistics);
+    assertThat(minYear, is(Arrays.asList(2011, 2010, 2008)));
+  }
+
+  @Test
+  public void testGetNr3And4CountiesForMalesIn2010() {
+    List<String> minYear = exercises03.getNr3And4CountiesForMalesIn2010(statistics);
+    assertThat(minYear, is( Arrays.asList("Oslo", "Hordaland")));
+  }
+
+
+  @Test
     public void testGroupedByCounty() throws Exception {
         Map<String,List<IncomeStatistics>> groupedByCounty = exercises03.groupedByCounty(statistics);
 

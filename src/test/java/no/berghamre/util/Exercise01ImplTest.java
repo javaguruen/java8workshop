@@ -3,7 +3,6 @@ package no.berghamre.util;
 import no.berghamre.DataReader;
 import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

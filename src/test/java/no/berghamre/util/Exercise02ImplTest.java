@@ -2,12 +2,9 @@ package no.berghamre.util;
 
 import no.berghamre.DataReader;
 import no.berghamre.data.IncomeStatistics;
-import no.berghamre.util.fasit.*;
-import no.berghamre.util.fasit.Exercise02Impl;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -51,18 +48,6 @@ public class Exercise02ImplTest {
   public void testGetYearOfMinimumIncomeForMalesInHordaland() throws Exception {
     Integer minYear = exercises02.getYearOfMinimumIncomeForMalesInHordaland(statistics);
     assertThat(minYear, is(1997));
-  }
-
-  @Test
-  public void testGetTopThreeYearsForRogaland() {
-    List<Integer> minYear = exercises02.getTopThreeYearsForRogaland(statistics);
-    assertThat(minYear, is(Arrays.asList( 2011, 2010, 2008)));
-  }
-
-  @Test
-  public void testGetNr3And4CountiesForMalesIn2010() {
-    List<String> minYear = exercises02.getNr3And4CountiesForMalesIn2010(statistics);
-    assertThat(minYear, is( Arrays.asList("Oslo", "Hordaland")));
   }
 
   @Test
