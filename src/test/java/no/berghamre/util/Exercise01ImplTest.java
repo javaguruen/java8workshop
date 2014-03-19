@@ -27,17 +27,6 @@ public class Exercise01ImplTest {
     }
 
     @Test
-    public void testDecodeLinesUsingForEach() throws Exception {
-        Assert.assertThat("Statistics contains 38 elements", statistics.size(), is(570));
-        Assert.assertThat("thirtieth element is from Akershus", statistics.get(30).county, is("Akershus"));
-        Assert.assertThat("Gender of first element is male", statistics.get(0).sex, is(Gender.male));
-        Assert.assertThat("Last element is from Finnmark", statistics.get(569).county, is("Finnmark"));
-        Assert.assertThat("Gender of last element is female", statistics.get(569).sex, is(Gender.female));
-        Assert.assertThat("Income for Vestfold, female, 1997 is 132400", statistics.get(195).averageIncome, is(132400));
-        Assert.assertThat("Income for Vestfold, female, 2011 is 281900", statistics.get(209).averageIncome, is(281900));
-    }
-
-    @Test
     public void testGetStatisticsForGender() throws Exception {
         ArrayList<IncomeStatistics> copy = new ArrayList<>(statistics);
         List<IncomeStatistics> male = ilu.getStatisticsForGender(copy, Gender.male);
