@@ -5,11 +5,22 @@ import no.berghamre.data.IncomeStatistics;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class Exercise03Impl implements Exercises03 {
+    @Override
+    public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> incomeStatistics) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<IncomeStatistics> allAbove(List<IncomeStatistics> incomeStatistics, int limit) {
+        return Collections.emptyList();
+    }
+
     @Override
     public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> incomeStatistics) {
         return new IncomeStatisticsSplitOnGender(Stream.<IncomeStatistics>empty().collect(Collectors.toList()), Stream.<IncomeStatistics>empty().collect(Collectors.toList()));

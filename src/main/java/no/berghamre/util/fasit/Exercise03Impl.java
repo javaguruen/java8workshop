@@ -12,7 +12,17 @@ import java.util.stream.Stream;
 
 public class Exercise03Impl implements Exercises03 {
 
-  @Override
+    @Override
+    public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> incomeStatistics) {
+        return incomeStatistics.stream().filter(is->is.averageIncome>400000).findFirst();
+    }
+
+    @Override
+    public List<IncomeStatistics> allAbove(List<IncomeStatistics> incomeStatistics, int limit) {
+        return incomeStatistics.stream().filter(is->is.averageIncome>limit).collect(Collectors.toList());
+    }
+
+    @Override
   public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> incomeStatistics) {
     Map<Boolean, List<IncomeStatistics>> split = incomeStatistics.stream().collect(Collectors.partitioningBy(is -> Gender.female == is.sex));
 

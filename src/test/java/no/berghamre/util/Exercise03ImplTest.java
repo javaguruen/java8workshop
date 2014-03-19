@@ -1,6 +1,7 @@
 package no.berghamre.util;
 
 import no.berghamre.DataReader;
+import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -24,6 +26,31 @@ public class Exercise03ImplTest {
     public void setUp() throws Exception {
         statistics = DataReader.decodeLinesUsingForEach();
         exercises03 = new Exercise03Impl();
+    }
+
+    @Test
+    public void testFindFirstAbove400k() throws Exception {
+        Optional<IncomeStatistics> is = exercises03.findFirstAbove400k(statistics);
+
+        assertThat(is.isPresent(), is(true));
+        IncomeStatistics firstAbove400k = is.get();
+
+        assertThat("county is Østfold", firstAbove400k.county, is("Østfold"));
+        assertThat("gender is male", firstAbove400k.sex, is(Gender.male));
+        assertThat("year is 2011", firstAbove400k.year, is(2011));
+        assertThat("income is 403100", firstAbove400k.averageIncome, is(403100));
+    }
+
+    @Test
+    public void testAllAbove() throws Exception {
+        List<IncomeStatistics> is = exercises03.allAbove(statistics, 375000);
+        assertThat(is.size(), is(88));
+
+        is.forEach(i -> {
+            if(!(i.averageIncome>375000)){
+                throw new RuntimeException("income was not above limit");
+            }
+        });
     }
 
     @Test
