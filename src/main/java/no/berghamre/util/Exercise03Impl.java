@@ -30,13 +30,13 @@ public class Exercise03Impl implements Exercises03 {
         return Stream.<String>empty();
     }
 
+    private String  generateNext(String digits , char prev, int curlen){
+        return "";
+    }
+
     @Override
     public LongStream fibonacci() {
         return LongStream.empty();
-    }
-
-    private String  generateNext(String digits , char prev, int curlen){
-        return "";
     }
 
 }

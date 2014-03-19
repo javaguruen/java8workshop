@@ -51,20 +51,8 @@ public class Exercise03Impl implements Exercises03 {
         return next;
     }
 
-    private Stream<String> convertToStreamOfCharacters(String s){
-        char[] chars = s.toCharArray();
-
-        List<String> list = new ArrayList<String>();
-
-        for(char c : chars){
-            list.add(String.valueOf(c));
-        }
-
-        return list.stream();
-    }
-
     @Override
     public LongStream fibonacci() {
-        return LongStream.empty();
+        return FibonacciGenerator.fibonacci();
     }
 }
