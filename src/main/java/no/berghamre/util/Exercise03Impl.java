@@ -1,6 +1,7 @@
 package no.berghamre.util;
 
 import no.berghamre.data.IncomeStatistics;
+import no.berghamre.util.fasit.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -46,6 +47,8 @@ public class Exercise03Impl implements Exercises03 {
   }
 
   /**
+   * a_n = a_1 + (n-1)d or a_n = a_n-1 + d
+   *
    * Hint: http://en.wikipedia.org/wiki/Arithmetic_progression
    */
   @Override
@@ -54,7 +57,8 @@ public class Exercise03Impl implements Exercises03 {
   }
 
   /**
-   * Hint: always start with "1" see: http://en.wikipedia.org/wiki/Look-and-say_sequence
+   * Hint: always start with "1"  next is "11", "21", "1211" ...
+   * see: http://en.wikipedia.org/wiki/Look-and-say_sequence
    */
   @Override
   public Stream<String> lookAndSay() {
@@ -75,6 +79,6 @@ public class Exercise03Impl implements Exercises03 {
 
   @Override
   public LongStream fibonacci() {
-    return LongStream.empty();
+    return no.berghamre.util.fasit.FibonacciGenerator.fibonacci();
   }
 }
