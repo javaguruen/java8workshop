@@ -32,8 +32,4 @@ public class Exercise02Impl implements Exercises02 {
     return null;
   }
 
-  @Override
-  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> incomes) {
-    return new ArrayList<>();
-  }
 }

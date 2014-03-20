@@ -50,9 +50,4 @@ public class Exercise02ImplTest {
     assertThat(minYear, is(1997));
   }
 
-  @Test
-  public void testGetSumPerCountyPerYear() {
-    List<IncomeStatistics> sumPerCountyPerYear = exercises02.getSumPerCountyPerYear(statistics);
-    assertThat("find something to assert on", sumPerCountyPerYear.size(), is(19));
-  }
 }

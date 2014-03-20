@@ -11,5 +11,4 @@ public interface Exercises02 {
   Integer getMinimumIncomeIn2011(List<IncomeStatistics> incomes);
   Integer getMaximumIncomeForFemales(List<IncomeStatistics> incomes);
   Integer getYearOfMinimumIncomeForMalesInHordaland(List<IncomeStatistics> incomes);
-  List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> incomes);
 }

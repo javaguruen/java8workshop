@@ -22,7 +22,21 @@ public class Exercise03Impl implements Exercises03 {
         return incomeStatistics.stream().filter(is->is.averageIncome>limit).collect(Collectors.toList());
     }
 
-    @Override
+  @Override
+  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> incomes){
+    Map<String, List<IncomeStatistics>> collect = incomes.stream()
+        .filter(Util.isYear(2011))
+        .collect(Collectors.groupingBy(is -> is.county));
+
+    List<IncomeStatistics> summed = collect.entrySet().stream()
+        .map(entry -> new IncomeStatistics(entry.getKey(), Gender.male, 2011, entry.getValue().stream().mapToInt(is -> is.averageIncome).sum()))
+        .collect( Collectors.toList());
+    summed.forEach( System.out::println );
+    return summed;
+  }
+
+
+  @Override
   public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> incomeStatistics) {
     Map<Boolean, List<IncomeStatistics>> split = incomeStatistics.stream().collect(Collectors.partitioningBy(is -> Gender.female == is.sex));
 

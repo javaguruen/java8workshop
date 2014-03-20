@@ -56,18 +56,4 @@ public class Exercise02Impl implements Exercises02 {
     System.out.println("Year with minimum income for males in Hordaland: " + hordaland.get().year);
     return hordaland.get().year;
   }
-
-
-  @Override
-  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> incomes){
-    Map<String, List<IncomeStatistics>> collect = incomes.stream()
-        .filter(Util.isYear(2011))
-        .collect(Collectors.groupingBy(is -> is.county));
-
-    List<IncomeStatistics> summed = collect.entrySet().stream()
-        .map(entry -> new IncomeStatistics(entry.getKey(), Gender.male, 2011, entry.getValue().stream().mapToInt(is -> is.averageIncome).sum()))
-        .collect( Collectors.toList());
-    summed.forEach( System.out::println );
-    return summed;
-  }
 }
