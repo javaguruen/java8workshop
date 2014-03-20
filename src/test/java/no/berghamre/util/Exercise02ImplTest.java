@@ -1,6 +1,7 @@
 package no.berghamre.util;
 
 import no.berghamre.DataReader;
+import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,4 +51,12 @@ public class Exercise02ImplTest {
     assertThat(minYear, is(1997));
   }
 
+    @Test
+    public void testGetMaximum() throws Exception {
+        IncomeStatistics maximum = exercises02.getMaximum(statistics);
+        assertThat(maximum.year, is(2011));
+        assertThat(maximum.sex, is(Gender.male));
+        assertThat(maximum.county, is("Rogaland"));
+        assertThat(maximum.averageIncome, is(530600));
+    }
 }
