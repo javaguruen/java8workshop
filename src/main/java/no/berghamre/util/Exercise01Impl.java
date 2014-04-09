@@ -81,7 +81,7 @@ public class Exercise01Impl implements Exercises01 {
     }
 
     /**
-     * Return a comparator that compares by then year then county then sex
+     * Return a comparator that compares by income then year then county then sex
      */
     @Override public Comparator<IncomeStatistics> byIncomeYearCountySex() {
         return (o1,  o2)-> 0;
