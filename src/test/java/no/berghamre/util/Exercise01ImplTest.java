@@ -26,6 +26,19 @@ public class Exercise01ImplTest {
     }
 
     @Test
+    public void testGetStatisticsForYearsBefore() throws Exception {
+        ArrayList<IncomeStatistics> copy = new ArrayList<>(statistics);
+        List<IncomeStatistics> before = ilu.getStatisticsForYearsBefore(copy, 2003);
+
+        Assert.assertThat("before contains 38 elements", before.size(), is(228));
+        before.forEach((IncomeStatistics is) -> {
+            if (is.year >= 2003) {
+                throw new RuntimeException("Year was not less than 2003");
+            }
+        });
+    }
+
+    @Test
     public void testGetStatisticsForGender() throws Exception {
         ArrayList<IncomeStatistics> copy = new ArrayList<>(statistics);
         List<IncomeStatistics> male = ilu.getStatisticsForGender(copy, Gender.male);
@@ -38,18 +51,6 @@ public class Exercise01ImplTest {
         });
     }
 
-    @Test
-    public void testGetStatisticsForYearsBefore() throws Exception {
-        ArrayList<IncomeStatistics> copy = new ArrayList<>(statistics);
-        List<IncomeStatistics> before = ilu.getStatisticsForYearsBefore(copy, 2003);
-
-        Assert.assertThat("before contains 38 elements", before.size(), is(228));
-        before.forEach((IncomeStatistics is) -> {
-            if (is.year >= 2003) {
-                throw new RuntimeException("Year was not less than 2003");
-            }
-        });
-    }
 
     @Test
     public void testGetStatisticsForYearsAfter() throws Exception {
