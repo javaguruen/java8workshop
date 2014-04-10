@@ -10,39 +10,53 @@ import java.util.stream.Stream;
 
 public class Exercise03Impl implements Exercises03 {
 
-  @Override
-  public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> stats) {
+  /**
+   * Return the first IncomeStatistics object having income above 400K
+   */
+  @Override public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> stats) {
     return Optional.empty();
   }
 
-  @Override
-  public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit) {
+  /**
+   * Return all Incomestatistics objects having income above the given limit
+   */
+  @Override public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit) {
     return Collections.emptyList();
   }
 
-  @Override
-  public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {
+  /**
+   * Return a IncomeStatisticsSplitOnGender (Helper class).
+   */
+  @Override public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {
     return new IncomeStatisticsSplitOnGender(Stream.<IncomeStatistics>empty().collect(Collectors.toList()), Stream.<IncomeStatistics>empty().collect(Collectors.toList()));
   }
 
-  @Override
-  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> stats) {
+  /**
+   * Return the sum (male and female income) per county per year. Use IncomesStatistics class and ignore the gender-field
+   */
+  @Override public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> stats) {
     return new ArrayList<>();
   }
 
-  @Override
-  public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
+  /**
+   * Return lists of IncomeStatistics grouped by county.
+   */
+  @Override public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
     return Collections.EMPTY_MAP;
   }
 
 
-  @Override
-  public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> stats) {
+  /**
+   * Return a list of top three (in descending order) years of income (regadless of sex) in Rogaland
+   */
+  @Override public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> stats) {
     return null;
   }
 
-  @Override
-  public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> stats) {
+  /**
+   * Get the third and fourth county (based on income) for males in 2010
+   */
+  @Override public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> stats) {
     return null;
   }
 
@@ -51,8 +65,7 @@ public class Exercise03Impl implements Exercises03 {
    *
    * Hint: http://en.wikipedia.org/wiki/Arithmetic_progression
    */
-  @Override
-  public LongStream arithmeticProgression(long start, long difference) {
+  @Override public LongStream arithmeticProgression(long start, long difference) {
     return LongStream.empty();
   }
 
@@ -60,8 +73,7 @@ public class Exercise03Impl implements Exercises03 {
    * Hint: always start with "1"  next is "11", "21", "1211" ...
    * see: http://en.wikipedia.org/wiki/Look-and-say_sequence
    */
-  @Override
-  public Stream<String> lookAndSay() {
+  @Override public Stream<String> lookAndSay() {
     return Stream.<String>empty();
   }
 
@@ -77,8 +89,7 @@ public class Exercise03Impl implements Exercises03 {
     return "";
   }
 
-  @Override
-  public LongStream fibonacci() {
+  @Override public LongStream fibonacci() {
     return no.berghamre.util.fasit.FibonacciGenerator.fibonacci();
   }
 }
