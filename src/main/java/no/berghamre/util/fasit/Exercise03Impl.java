@@ -4,7 +4,6 @@ import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
 import no.berghamre.util.Exercises03;
 
-import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
@@ -23,18 +22,20 @@ public class Exercise03Impl implements Exercises03 {
     }
 
   @Override
-  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> stats){
+  public List<IncomeStatistics> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year){
     Map<String, List<IncomeStatistics>> collect = stats.stream()
-        .filter(Util.isYear(2011))
+        .filter(Util.isYear(year))
         .collect(Collectors.groupingBy(is -> is.county));
 
     List<IncomeStatistics> summed = collect.entrySet().stream()
-        .map(entry -> new IncomeStatistics(entry.getKey(), Gender.male, 2011, entry.getValue().stream().mapToInt(is -> is.averageIncome).sum()))
+        .map(entry -> new IncomeStatistics(entry.getKey(), Gender.male, year, sumOfIncomes( entry.getValue() )))
         .collect( Collectors.toList());
-    summed.forEach( System.out::println );
     return summed;
   }
 
+  private Integer sumOfIncomes(List<IncomeStatistics> stats){
+    return stats.stream().mapToInt(is -> is.averageIncome).sum();
+  }
 
   @Override
   public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {

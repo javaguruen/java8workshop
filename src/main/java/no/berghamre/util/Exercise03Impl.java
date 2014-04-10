@@ -1,7 +1,6 @@
 package no.berghamre.util;
 
 import no.berghamre.data.IncomeStatistics;
-import no.berghamre.util.fasit.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -34,7 +33,7 @@ public class Exercise03Impl implements Exercises03 {
   /**
    * Return the sum (male and female income) per county per year. Use IncomesStatistics class and ignore the gender-field
    */
-  @Override public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> stats) {
+  @Override public List<IncomeStatistics> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year) {
     return new ArrayList<>();
   }
 
@@ -71,6 +70,7 @@ public class Exercise03Impl implements Exercises03 {
 
   /**
    * Hint: always start with "1"  next is "11", "21", "1211" ...
+   * Hint: implement helper method below first
    * see: http://en.wikipedia.org/wiki/Look-and-say_sequence
    */
   @Override public Stream<String> lookAndSay() {

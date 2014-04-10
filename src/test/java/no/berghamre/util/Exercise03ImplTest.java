@@ -17,11 +17,12 @@ import java.util.stream.Stream;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class Exercise03ImplTest {
 
   private List<IncomeStatistics> statistics;
-  private Exercises03 exercises03;
+  private Exercise03Impl exercises03;
 
   @Before
   public void setUp() throws Exception {
@@ -55,9 +56,13 @@ public class Exercise03ImplTest {
   }
 
   @Test
-  public void testGetSumPerCountyPerYear() {
-    List<IncomeStatistics> sumPerCountyPerYear = exercises03.getSumPerCountyPerYear(statistics);
-    assertThat("find something to assert on", sumPerCountyPerYear.size(), is(19));
+  public void testGetSumPerCountyForYear() {
+    List<IncomeStatistics> sumPerCountyForYear = exercises03.getSumPerCountyForYear(statistics, 2011);
+    assertThat("find something to assert on", sumPerCountyForYear.size(), is(19));
+    Optional<IncomeStatistics> oslo = sumPerCountyForYear.stream().filter(s -> s.county.equals("Oslo")).findFirst();
+    assertTrue("Should be an Oslo", oslo.isPresent());
+    IncomeStatistics isOslo = oslo.get();
+    assertThat("Sum is not right", isOslo.averageIncome, is(500_900 + 345_100));
   }
 
   @Test
