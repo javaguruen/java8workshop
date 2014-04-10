@@ -13,18 +13,18 @@ import java.util.stream.Stream;
 public class Exercise03Impl implements Exercises03 {
 
     @Override
-    public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> incomeStatistics) {
-        return incomeStatistics.stream().filter(is->is.averageIncome>400000).findFirst();
+    public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> stats) {
+        return stats.stream().filter(is->is.averageIncome>400000).findFirst();
     }
 
     @Override
-    public List<IncomeStatistics> allAbove(List<IncomeStatistics> incomeStatistics, int limit) {
-        return incomeStatistics.stream().filter(is->is.averageIncome>limit).collect(Collectors.toList());
+    public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit) {
+        return stats.stream().filter(is->is.averageIncome>limit).collect(Collectors.toList());
     }
 
   @Override
-  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> incomes){
-    Map<String, List<IncomeStatistics>> collect = incomes.stream()
+  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> stats){
+    Map<String, List<IncomeStatistics>> collect = stats.stream()
         .filter(Util.isYear(2011))
         .collect(Collectors.groupingBy(is -> is.county));
 
@@ -37,22 +37,22 @@ public class Exercise03Impl implements Exercises03 {
 
 
   @Override
-  public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> incomeStatistics) {
-    Map<Boolean, List<IncomeStatistics>> split = incomeStatistics.stream().collect(Collectors.partitioningBy(is -> Gender.female == is.sex));
+  public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {
+    Map<Boolean, List<IncomeStatistics>> split = stats.stream().collect(Collectors.partitioningBy(is -> Gender.female == is.sex));
 
     return new IncomeStatisticsSplitOnGender(split.get(true), split.get(false));
   }
 
   @Override
-  public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> incomeStatistics) {
-    Map<String, List<IncomeStatistics>> grouped = incomeStatistics.stream().collect(Collectors.groupingBy(is -> is.county));
+  public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
+    Map<String, List<IncomeStatistics>> grouped = stats.stream().collect(Collectors.groupingBy(is -> is.county));
     return grouped;
   }
 
   @Override
-  public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> incomes) {
+  public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> stats) {
     Comparator<IncomeStatistics> byIncome = Util::compareByIncome;
-    List<Integer> rogaland = incomes.stream()
+    List<Integer> rogaland = stats.stream()
         .filter(Util.isCounty("Rogaland"))
         .sorted(byIncome.reversed())
         .limit(3)
@@ -62,9 +62,9 @@ public class Exercise03Impl implements Exercises03 {
     return rogaland;
   }
 
-  public List<Integer> getTopThreeYearsForRogaland2(List<IncomeStatistics> incomes) {
+  public List<Integer> getTopThreeYearsForRogaland2(List<IncomeStatistics> stats) {
     Comparator<IncomeStatistics> byIncome = Util::compareByIncome;
-    List<Integer> rogaland = incomes.stream()
+    List<Integer> rogaland = stats.stream()
         .filter(Util.isCounty("Rogaland"))
         .sorted(byIncome.reversed())
         .limit(3)
@@ -75,8 +75,8 @@ public class Exercise03Impl implements Exercises03 {
   }
 
   @Override
-  public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> incomes) {
-    List<String> counties = incomes.stream()
+  public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> stats) {
+    List<String> counties = stats.stream()
         .filter(Util::isMale)
         .filter(Util.isYear(2010))
         .sorted(((Comparator<IncomeStatistics>) Util::compareByIncome).reversed())

@@ -11,38 +11,38 @@ import java.util.stream.Stream;
 public class Exercise03Impl implements Exercises03 {
 
   @Override
-  public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> incomeStatistics) {
+  public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> stats) {
     return Optional.empty();
   }
 
   @Override
-  public List<IncomeStatistics> allAbove(List<IncomeStatistics> incomeStatistics, int limit) {
+  public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit) {
     return Collections.emptyList();
   }
 
   @Override
-  public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> incomeStatistics) {
+  public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {
     return new IncomeStatisticsSplitOnGender(Stream.<IncomeStatistics>empty().collect(Collectors.toList()), Stream.<IncomeStatistics>empty().collect(Collectors.toList()));
   }
 
   @Override
-  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> incomes) {
+  public List<IncomeStatistics> getSumPerCountyPerYear(List<IncomeStatistics> stats) {
     return new ArrayList<>();
   }
 
   @Override
-  public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> incomeStatistics) {
+  public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
     return Collections.EMPTY_MAP;
   }
 
 
   @Override
-  public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> incomes) {
+  public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> stats) {
     return null;
   }
 
   @Override
-  public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> incomes) {
+  public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> stats) {
     return null;
   }
 
