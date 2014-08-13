@@ -17,6 +17,13 @@ public class Exercise01Impl implements Exercises01 {
     }
 
     /**
+     * Return a comparator that compares by gender
+     */
+    @Override public Comparator<IncomeStatistics> byGender() {
+        return (o1,  o2)-> 0;
+    }
+
+    /**
      * Return a comparator that compares by county
      */
     @Override public Comparator<IncomeStatistics> byCounty() {
@@ -31,10 +38,17 @@ public class Exercise01Impl implements Exercises01 {
     }
 
     /**
-     * Return a comparator that compares by gender
+     * Return a comparator that compares by income then year then county then sex
      */
-    @Override public Comparator<IncomeStatistics> byGender() {
+    @Override public Comparator<IncomeStatistics> byIncomeYearCountySex() {
         return (o1,  o2)-> 0;
+    }
+
+    /**
+     * Create and return a new list containing IncomeStatistics only for the given <code>gender</code>
+     */
+    @Override public List<IncomeStatistics> getStatisticsForGender(List<IncomeStatistics> stats, Gender gender) {
+        return Collections.emptyList();
     }
 
     /**
@@ -48,13 +62,6 @@ public class Exercise01Impl implements Exercises01 {
      * Create and return a new list containing IncomeStatistics for the years after <code>year</code>
      */
     @Override public List<IncomeStatistics> getStatisticsForYearsAfter(List<IncomeStatistics> stats, int year) {
-        return Collections.emptyList();  
-    }
-
-    /**
-     * Create and return a new list containing IncomeStatistics only for the given <code>gender</code>
-     */
-    @Override public List<IncomeStatistics> getStatisticsForGender(List<IncomeStatistics> stats, Gender gender) {
         return Collections.emptyList();
     }
 
@@ -62,14 +69,14 @@ public class Exercise01Impl implements Exercises01 {
      * Create and return a new list containing IncomeStatistics with income less than the given <code>income</code>
      */
     @Override public List<IncomeStatistics> getStatisticsForIncomeLessThan(List<IncomeStatistics> stats, int income) {
-        return Collections.emptyList(); 
+        return Collections.emptyList();
     }
 
     /**
      * Create and return a new list containing IncomeStatistics with more income than the given <code>income</code>
      */
     @Override public List<IncomeStatistics> getStatisticsForIncomeMoreThan(List<IncomeStatistics> stats, int income) {
-        return Collections.emptyList();  
+        return Collections.emptyList();
     }
 
     /**
@@ -78,12 +85,5 @@ public class Exercise01Impl implements Exercises01 {
      */
     @Override public List<IncomeStatistics> getStatisticsForIncomeMoreThanSortedByIncomeDesc(List<IncomeStatistics> stats, int income) {
         return Collections.emptyList();
-    }
-
-    /**
-     * Return a comparator that compares by income then year then county then sex
-     */
-    @Override public Comparator<IncomeStatistics> byIncomeYearCountySex() {
-        return (o1,  o2)-> 0;
     }
 }

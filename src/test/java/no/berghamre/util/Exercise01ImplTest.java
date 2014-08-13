@@ -26,16 +26,69 @@ public class Exercise01ImplTest {
     }
 
     @Test
-    public void testGetStatisticsForYearsBefore() throws Exception {
-        ArrayList<IncomeStatistics> copy = new ArrayList<>(statistics);
-        List<IncomeStatistics> before = ilu.getStatisticsForYearsBefore(copy, 2003);
+    public void testIncomeComparator() throws Exception {
+        IncomeStatistics is1 = new IncomeStatistics("Oslo", Gender.female, 2000, 300000);
+        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2000, 350000);
+        IncomeStatistics is3 = new IncomeStatistics("Hordaland", Gender.male, 1998, 350000);
 
-        Assert.assertThat("before contains 38 elements", before.size(), is(228));
-        before.forEach((IncomeStatistics is) -> {
-            if (is.year >= 2003) {
-                throw new RuntimeException("Year was not less than 2003");
-            }
-        });
+        Assert.assertThat("350000 equals 350000", ilu.byIncome().compare(is3, is2), is(0));
+        Assert.assertTrue("300000 is before 350000", ilu.byIncome().compare(is1, is3) < 0);
+        Assert.assertTrue("350000 is after 300000", ilu.byIncome().compare(is2, is1) > 0);
+
+    }
+
+    @Test
+    public void testGenderComparator() throws Exception {
+        IncomeStatistics is1 = new IncomeStatistics("Oslo", Gender.female, 2000, 300000);
+        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2000, 350000);
+        IncomeStatistics is3 = new IncomeStatistics("Hordaland", Gender.male, 2000, 380000);
+
+        Assert.assertThat("male equals male", ilu.byGender().compare(is2, is3), is(0));
+        Assert.assertTrue("female is before male", ilu.byGender().compare(is1, is3) < 0);
+        Assert.assertTrue("male is after female", ilu.byGender().compare(is2, is1) > 0);
+    }
+
+    @Test
+    public void testCountyComparator() throws Exception {
+        IncomeStatistics is1 = new IncomeStatistics("Oslo", Gender.female, 2000, 300000);
+        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2000, 350000);
+        IncomeStatistics is3 = new IncomeStatistics("Hordaland", Gender.male, 2000, 380000);
+
+        Assert.assertThat("Oslo equals Oslo", ilu.byCounty().compare(is1, is2), is(0));
+        Assert.assertTrue("Oslo is after Hordaland", ilu.byCounty().compare(is1, is3) > 0);
+        Assert.assertTrue("Hordaland is before Oslo", ilu.byCounty().compare(is3, is2) < 0);
+
+    }
+
+    @Test
+    public void testYearComparator() throws Exception {
+        IncomeStatistics is1 = new IncomeStatistics("Oslo", Gender.female, 2000, 300000);
+        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2000, 350000);
+        IncomeStatistics is3 = new IncomeStatistics("Hordaland", Gender.male, 2001, 380000);
+
+        Assert.assertThat("2000 equals 2000", ilu.byYear().compare(is1, is2), is(0));
+        Assert.assertTrue("2000 is before 2001", ilu.byYear().compare(is1, is3) < 0);
+        Assert.assertTrue("2001 is after 2000", ilu.byYear().compare(is3, is2) > 0);
+
+    }
+
+    @Test
+    public void testbyIncomeYearCountySexComparator() throws Exception {
+        IncomeStatistics is1 = new IncomeStatistics("Hordaland", Gender.female, 2000, 350000);
+        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2001, 300000);
+        IncomeStatistics is3 = new IncomeStatistics("Oslo", Gender.male, 2000, 380000);
+        IncomeStatistics is4 = new IncomeStatistics("Hordaland", Gender.female, 2001, 380000);
+        IncomeStatistics is5 = new IncomeStatistics("Hordaland", Gender.male, 2001, 380000);
+        IncomeStatistics is6 = new IncomeStatistics("Oslo", Gender.female, 2001, 380000);
+        IncomeStatistics is7 = new IncomeStatistics("Hordaland", Gender.male, 2001, 380000);
+        IncomeStatistics is8 = new IncomeStatistics("Hordaland", Gender.female, 2001, 380000);
+        IncomeStatistics is9 = new IncomeStatistics("Hordaland", Gender.female, 2001, 380000);
+
+        Assert.assertTrue("350000 after 300000", ilu.byIncomeYearCountySex().compare(is1, is2) > 0);
+        Assert.assertTrue("2000 before 2001", ilu.byIncomeYearCountySex().compare(is3, is4) < 0);
+        Assert.assertTrue("Hordaland before Oslo", ilu.byIncomeYearCountySex().compare(is5, is6) < 0);
+        Assert.assertTrue("male after female", ilu.byIncomeYearCountySex().compare(is7, is8) > 0);
+        Assert.assertThat("All the same returns 0", ilu.byIncomeYearCountySex().compare(is8, is9), is(0));
     }
 
     @Test
@@ -51,6 +104,18 @@ public class Exercise01ImplTest {
         });
     }
 
+    @Test
+    public void testGetStatisticsForYearsBefore() throws Exception {
+        ArrayList<IncomeStatistics> copy = new ArrayList<>(statistics);
+        List<IncomeStatistics> before = ilu.getStatisticsForYearsBefore(copy, 2003);
+
+        Assert.assertThat("before contains 38 elements", before.size(), is(228));
+        before.forEach((IncomeStatistics is) -> {
+            if (is.year >= 2003) {
+                throw new RuntimeException("Year was not less than 2003");
+            }
+        });
+    }
 
     @Test
     public void testGetStatisticsForYearsAfter() throws Exception {
@@ -89,73 +154,6 @@ public class Exercise01ImplTest {
                 throw new RuntimeException("averageIncome was not more than 200000");
             }
         });
-    }
-
-    @Test
-    public void testCountyComparator() throws Exception {
-        IncomeStatistics is1 = new IncomeStatistics("Oslo", Gender.female, 2000, 300000);
-        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2000, 350000);
-        IncomeStatistics is3 = new IncomeStatistics("Hordaland", Gender.male, 2000, 380000);
-
-        Assert.assertThat("Oslo equals Oslo", ilu.byCounty().compare(is1, is2), is(0));
-        Assert.assertTrue("Oslo is after Hordaland", ilu.byCounty().compare(is1, is3) > 0);
-        Assert.assertTrue("Hordaland is before Oslo", ilu.byCounty().compare(is3, is2) < 0);
-
-    }
-
-    @Test
-    public void testGenderComparator() throws Exception {
-        IncomeStatistics is1 = new IncomeStatistics("Oslo", Gender.female, 2000, 300000);
-        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2000, 350000);
-        IncomeStatistics is3 = new IncomeStatistics("Hordaland", Gender.male, 2000, 380000);
-
-        Assert.assertThat("male equals male", ilu.byGender().compare(is2, is3), is(0));
-        Assert.assertTrue("female is before male", ilu.byGender().compare(is1, is3) < 0);
-        Assert.assertTrue("male is after female", ilu.byGender().compare(is2, is1) > 0);
-
-    }
-
-    @Test
-    public void testIncomeComparator() throws Exception {
-        IncomeStatistics is1 = new IncomeStatistics("Oslo", Gender.female, 2000, 300000);
-        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2000, 350000);
-        IncomeStatistics is3 = new IncomeStatistics("Hordaland", Gender.male, 1998, 350000);
-
-        Assert.assertThat("350000 equals 350000", ilu.byIncome().compare(is3, is2), is(0));
-        Assert.assertTrue("300000 is before 350000", ilu.byIncome().compare(is1, is3) < 0);
-        Assert.assertTrue("350000 is after 300000", ilu.byIncome().compare(is2, is1) > 0);
-
-    }
-
-    @Test
-    public void testYearComparator() throws Exception {
-        IncomeStatistics is1 = new IncomeStatistics("Oslo", Gender.female, 2000, 300000);
-        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2000, 350000);
-        IncomeStatistics is3 = new IncomeStatistics("Hordaland", Gender.male, 2001, 380000);
-
-        Assert.assertThat("2000 equals 2000", ilu.byYear().compare(is1, is2), is(0));
-        Assert.assertTrue("2000 is before 2001", ilu.byYear().compare(is1, is3) < 0);
-        Assert.assertTrue("2001 is after 2000", ilu.byYear().compare(is3, is2) > 0);
-
-    }
-
-    @Test
-    public void testbyIncomeYearCountySexComparator() throws Exception {
-        IncomeStatistics is1 = new IncomeStatistics("Hordaland", Gender.female, 2000, 350000);
-        IncomeStatistics is2 = new IncomeStatistics("Oslo", Gender.male, 2001, 300000);
-        IncomeStatistics is3 = new IncomeStatistics("Oslo", Gender.male, 2000, 380000);
-        IncomeStatistics is4 = new IncomeStatistics("Hordaland", Gender.female, 2001, 380000);
-        IncomeStatistics is5 = new IncomeStatistics("Hordaland", Gender.male, 2001, 380000);
-        IncomeStatistics is6 = new IncomeStatistics("Oslo", Gender.female, 2001, 380000);
-        IncomeStatistics is7 = new IncomeStatistics("Hordaland", Gender.male, 2001, 380000);
-        IncomeStatistics is8 = new IncomeStatistics("Hordaland", Gender.female, 2001, 380000);
-        IncomeStatistics is9 = new IncomeStatistics("Hordaland", Gender.female, 2001, 380000);
-
-        Assert.assertTrue("350000 after 300000", ilu.byIncomeYearCountySex().compare(is1, is2) > 0);
-        Assert.assertTrue("2000 before 2001", ilu.byIncomeYearCountySex().compare(is3, is4) < 0);
-        Assert.assertTrue("Hordaland before Oslo", ilu.byIncomeYearCountySex().compare(is5, is6) < 0);
-        Assert.assertTrue("male after female", ilu.byIncomeYearCountySex().compare(is7, is8) > 0);
-        Assert.assertThat("All the same returns 0", ilu.byIncomeYearCountySex().compare(is8, is9), is(0));
     }
 
     @Test
