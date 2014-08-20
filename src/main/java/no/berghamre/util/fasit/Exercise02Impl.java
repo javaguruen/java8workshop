@@ -20,13 +20,6 @@ public class Exercise02Impl implements Exercises02 {
   }
 
   @Override
-  public IncomeStatistics getMaximum(List<IncomeStatistics> stats) {
-    Optional<IncomeStatistics> reduce = stats.stream()
-        .reduce((is1, is2) -> is1.averageIncome < is2.averageIncome ? is2 : is1);
-    return reduce.get();
-  }
-
-  @Override
   public Integer getMinimumIncomeIn2011(List<IncomeStatistics> stats) {
     OptionalInt min = stats.stream()
         .filter( is -> is.year == 2011 )
@@ -55,5 +48,12 @@ public class Exercise02Impl implements Exercises02 {
         .findFirst();
     System.out.println("Year with minimum income for males in Hordaland: " + hordaland.get().year);
     return hordaland.get().year;
+  }
+
+  @Override
+  public IncomeStatistics getMaximum(List<IncomeStatistics> stats) {
+    Optional<IncomeStatistics> reduce = stats.stream()
+        .reduce((is1, is2) -> is1.averageIncome < is2.averageIncome ? is2 : is1);
+    return reduce.get();
   }
 }

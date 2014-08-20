@@ -21,8 +21,8 @@ public interface Exercises03 {
 
     public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> stats);
     public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit);
-    public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats);
     public List<IncomeStatistics> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year);
+    public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats);
     public List<Integer> getTopThreeYearsForRogaland( List<IncomeStatistics> stats );
     public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> stats);
     public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats);

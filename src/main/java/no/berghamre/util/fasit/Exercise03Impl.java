@@ -33,21 +33,11 @@ public class Exercise03Impl implements Exercises03 {
     return summed;
   }
 
-  private Integer sumOfIncomes(List<IncomeStatistics> stats){
-    return stats.stream().mapToInt(is -> is.averageIncome).sum();
-  }
-
   @Override
   public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {
     Map<Boolean, List<IncomeStatistics>> split = stats.stream().collect(Collectors.partitioningBy(is -> Gender.female == is.sex));
 
     return new IncomeStatisticsSplitOnGender(split.get(true), split.get(false));
-  }
-
-  @Override
-  public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
-    Map<String, List<IncomeStatistics>> grouped = stats.stream().collect(Collectors.groupingBy(is -> is.county));
-    return grouped;
   }
 
   @Override
@@ -60,18 +50,6 @@ public class Exercise03Impl implements Exercises03 {
         .mapToInt(is -> is.year)
         .boxed()
         .collect(Collectors.<Integer>toList());
-    return rogaland;
-  }
-
-  public List<Integer> getTopThreeYearsForRogaland2(List<IncomeStatistics> stats) {
-    Comparator<IncomeStatistics> byIncome = Util::compareByIncome;
-    List<Integer> rogaland = stats.stream()
-        .filter(Util.isCounty("Rogaland"))
-        .sorted(byIncome.reversed())
-        .limit(3)
-        .map(is -> is.year)
-        .collect(Collectors.<Integer>toList());
-    System.out.println("Top 3 years for Rogaland: " + rogaland);
     return rogaland;
   }
 
@@ -89,6 +67,11 @@ public class Exercise03Impl implements Exercises03 {
     return counties;
   }
 
+  @Override
+  public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
+    Map<String, List<IncomeStatistics>> grouped = stats.stream().collect(Collectors.groupingBy(is -> is.county));
+    return grouped;
+  }
 
   @Override
   public LongStream arithmeticProgression(long start, long difference) {
@@ -102,6 +85,26 @@ public class Exercise03Impl implements Exercises03 {
     });
   }
 
+  @Override
+  public LongStream fibonacci() {
+    return FibonacciGenerator.fibonacci();
+  }
+
+  private Integer sumOfIncomes(List<IncomeStatistics> stats){
+    return stats.stream().mapToInt(is -> is.averageIncome).sum();
+  }
+
+  public List<Integer> getTopThreeYearsForRogaland2(List<IncomeStatistics> stats) {
+    Comparator<IncomeStatistics> byIncome = Util::compareByIncome;
+    List<Integer> rogaland = stats.stream()
+        .filter(Util.isCounty("Rogaland"))
+        .sorted(byIncome.reversed())
+        .limit(3)
+        .map(is -> is.year)
+        .collect(Collectors.<Integer>toList());
+    System.out.println("Top 3 years for Rogaland: " + rogaland);
+    return rogaland;
+  }
 
   private String generateNext(String digits, char prev, int curlen) {
     String next;
@@ -115,10 +118,5 @@ public class Exercise03Impl implements Exercises03 {
       next = Integer.toString(curlen) + prev + generateNext(digits.substring(1), digits.charAt(0), 1);
     }
     return next;
-  }
-
-  @Override
-  public LongStream fibonacci() {
-    return FibonacciGenerator.fibonacci();
   }
 }

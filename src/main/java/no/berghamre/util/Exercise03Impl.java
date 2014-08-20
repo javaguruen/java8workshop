@@ -24,13 +24,6 @@ public class Exercise03Impl implements Exercises03 {
   }
 
   /**
-   * Return a IncomeStatisticsSplitOnGender (Helper class).
-   */
-  @Override public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {
-    return new IncomeStatisticsSplitOnGender(Stream.<IncomeStatistics>empty().collect(Collectors.toList()), Stream.<IncomeStatistics>empty().collect(Collectors.toList()));
-  }
-
-  /**
    * Return the sum (male and female income) per county per year. Use IncomesStatistics class and ignore the gender-field
    */
   @Override public List<IncomeStatistics> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year) {
@@ -38,12 +31,11 @@ public class Exercise03Impl implements Exercises03 {
   }
 
   /**
-   * Return lists of IncomeStatistics grouped by county.
+   * Return a IncomeStatisticsSplitOnGender (Helper class).
    */
-  @Override public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
-    return Collections.EMPTY_MAP;
+  @Override public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {
+    return new IncomeStatisticsSplitOnGender(Stream.<IncomeStatistics>empty().collect(Collectors.toList()), Stream.<IncomeStatistics>empty().collect(Collectors.toList()));
   }
-
 
   /**
    * Return a list of top three (in descending order) years of income (regadless of sex) in Rogaland
@@ -57,6 +49,13 @@ public class Exercise03Impl implements Exercises03 {
    */
   @Override public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> stats) {
     return null;
+  }
+
+  /**
+   * Return lists of IncomeStatistics grouped by county.
+   */
+  @Override public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
+    return Collections.EMPTY_MAP;
   }
 
   /**
@@ -77,6 +76,10 @@ public class Exercise03Impl implements Exercises03 {
     return Stream.<String>empty();
   }
 
+  @Override public LongStream fibonacci() {
+    return no.berghamre.util.FibonacciGenerator.fibonacci();
+  }
+
   /**
    * Helper for lookAndSay. Tip: make this recursive
    *
@@ -87,9 +90,5 @@ public class Exercise03Impl implements Exercises03 {
    */
   private String generateNext(String digits, char prev, int curlen) {
     return "";
-  }
-
-  @Override public LongStream fibonacci() {
-    return no.berghamre.util.fasit.FibonacciGenerator.fibonacci();
   }
 }
