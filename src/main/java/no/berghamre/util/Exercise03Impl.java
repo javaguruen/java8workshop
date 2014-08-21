@@ -55,7 +55,7 @@ public class Exercise03Impl implements Exercises03 {
    * Return lists of IncomeStatistics grouped by county.
    */
   @Override public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
-    return Collections.EMPTY_MAP;
+    return Collections.emptyMap();
   }
 
   /**
