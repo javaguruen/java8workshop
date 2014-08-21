@@ -38,7 +38,7 @@ public class Exercise03Impl implements Exercises03 {
   }
 
   /**
-   * Return a list of top three (in descending order) years of income (regadless of sex) in Rogaland
+   * Return a list of top three (in descending order) years of income (regardless of sex) in Rogaland
    */
   @Override public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> stats) {
     return null;
