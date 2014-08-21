@@ -1,5 +1,6 @@
 package no.berghamre.util;
 
+import no.berghamre.data.FamilyIncome;
 import no.berghamre.data.IncomeStatistics;
 
 import java.util.*;
@@ -26,7 +27,7 @@ public class Exercise03Impl implements Exercises03 {
   /**
    * Return the sum (male and female income) per county per year. Use IncomesStatistics class and ignore the gender-field
    */
-  @Override public List<IncomeStatistics> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year) {
+  @Override public List<FamilyIncome> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year) {
     return new ArrayList<>();
   }
 

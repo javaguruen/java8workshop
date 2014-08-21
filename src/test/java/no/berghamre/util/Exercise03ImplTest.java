@@ -1,6 +1,7 @@
 package no.berghamre.util;
 
 import no.berghamre.DataReader;
+import no.berghamre.data.FamilyIncome;
 import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
 import org.junit.Before;
@@ -22,12 +23,12 @@ import static org.junit.Assert.assertTrue;
 public class Exercise03ImplTest {
 
   private List<IncomeStatistics> statistics;
-  private Exercise03Impl exercises03;
+  private no.berghamre.util.fasit.Exercise03Impl exercises03;
 
   @Before
   public void setUp() throws Exception {
     statistics = DataReader.decodeLinesUsingForEach();
-    exercises03 = new Exercise03Impl();
+    exercises03 = new no.berghamre.util.fasit.Exercise03Impl();
   }
 
   @Test
@@ -57,12 +58,12 @@ public class Exercise03ImplTest {
 
   @Test
   public void testGetSumPerCountyForYear() {
-    List<IncomeStatistics> sumPerCountyForYear = exercises03.getSumPerCountyForYear(statistics, 2011);
+    List<FamilyIncome> sumPerCountyForYear = exercises03.getSumPerCountyForYear(statistics, 2011);
     assertThat("find something to assert on", sumPerCountyForYear.size(), is(19));
-    Optional<IncomeStatistics> oslo = sumPerCountyForYear.stream().filter(s -> s.county.equals("Oslo")).findFirst();
+    Optional<FamilyIncome> oslo = sumPerCountyForYear.stream().filter(s -> s.county.equals("Oslo")).findFirst();
     assertTrue("Should be an Oslo", oslo.isPresent());
-    IncomeStatistics isOslo = oslo.get();
-    assertThat("Sum is not right", isOslo.averageIncome, is(500_900 + 345_100));
+      FamilyIncome isOslo = oslo.get();
+    assertThat("Sum is not right", isOslo.totalAverageIncome, is(500_900 + 345_100));
   }
 
   @Test

@@ -1,5 +1,6 @@
 package no.berghamre.util;
 
+import no.berghamre.data.FamilyIncome;
 import no.berghamre.data.IncomeStatistics;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface Exercises03 {
 
     public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> stats);
     public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit);
-    public List<IncomeStatistics> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year);
+    public List<FamilyIncome> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year);
     public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats);
     public List<Integer> getTopThreeYearsForRogaland( List<IncomeStatistics> stats );
     public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> stats);

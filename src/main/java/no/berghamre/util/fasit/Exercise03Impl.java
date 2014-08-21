@@ -1,5 +1,6 @@
 package no.berghamre.util.fasit;
 
+import no.berghamre.data.FamilyIncome;
 import no.berghamre.data.Gender;
 import no.berghamre.data.IncomeStatistics;
 import no.berghamre.util.Exercises03;
@@ -22,13 +23,13 @@ public class Exercise03Impl implements Exercises03 {
     }
 
   @Override
-  public List<IncomeStatistics> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year){
+  public List<FamilyIncome> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year){
     Map<String, List<IncomeStatistics>> collect = stats.stream()
         .filter(Util.isYear(year))
         .collect(Collectors.groupingBy(is -> is.county));
 
-    List<IncomeStatistics> summed = collect.entrySet().stream()
-        .map(entry -> new IncomeStatistics(entry.getKey(), Gender.male, year, sumOfIncomes( entry.getValue() )))
+    List<FamilyIncome> summed = collect.entrySet().stream()
+        .map(entry -> new FamilyIncome(entry.getKey(), year, sumOfIncomes( entry.getValue() )))
         .collect( Collectors.toList());
     return summed;
   }
