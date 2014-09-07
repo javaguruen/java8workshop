@@ -3,12 +3,6 @@ package no.berghamre.util;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Random;
-import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
 
 public class FibonacciGeneratorTest {
     @Test

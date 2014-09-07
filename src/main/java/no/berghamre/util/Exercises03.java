@@ -28,8 +28,4 @@ public interface Exercises03 {
     public List<String> getNr3And4CountiesForMalesIn2010(List<IncomeStatistics> stats);
     public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats);
     public LongStream arithmeticProgression(long start, long difference);
-    public Stream<String> lookAndSay();
-    public LongStream fibonacci();
-
-
 }
