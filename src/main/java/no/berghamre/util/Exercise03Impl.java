@@ -18,14 +18,14 @@ public class Exercise03Impl implements Exercises03 {
   }
 
   /**
-   * Return all Incomestatistics objects having income above the given limit
+   * Return all IncomeStatistics objects having income above the given limit
    */
   @Override public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit) {
     return Collections.emptyList();
   }
 
   /**
-   * Return the sum (male and female income) per county per year. Use IncomesStatistics class and ignore the gender-field
+   * Return the sum (male and female income) per county per year. Use the FamilyIncome class for aggregation of data.
    */
   @Override public List<FamilyIncome> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year) {
     return new ArrayList<>();
@@ -39,7 +39,7 @@ public class Exercise03Impl implements Exercises03 {
   }
 
   /**
-   * Return a list of top three (in descending order) years of income (regardless of sex) in Rogaland
+   * Return a list of top three years (in descending order) with the most income (regardless of sex) in Rogaland
    */
   @Override public List<Integer> getTopThreeYearsForRogaland(List<IncomeStatistics> stats) {
     return null;
