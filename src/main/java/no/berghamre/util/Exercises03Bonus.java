@@ -10,6 +10,8 @@ import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public interface Exercises03Bonus {
-    public Stream<String> lookAndSay();
-    public LongStream fibonacci();
+
+  public Stream<String> lookAndSay();
+
+  public LongStream fibonacci();
 }

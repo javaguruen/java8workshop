@@ -10,7 +10,7 @@ public class Exercise03BonusImpl implements Exercises03Bonus {
   @Override
   public Stream<String> lookAndSay() {
     return Stream.iterate("1", s -> {
-        return generateNext(s.substring(1), s.charAt(0), 1);
+      return generateNext(s.substring(1), s.charAt(0), 1);
     });
   }
 

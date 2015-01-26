@@ -25,7 +25,6 @@ public class Exercise02ImplTest {
 
   /**
    * Maximum avearge income
-   * @throws Exception
    */
   @Test
   public void testGetMaximumIncome() throws Exception {
@@ -42,7 +41,7 @@ public class Exercise02ImplTest {
   @Test
   public void testGetMaximumIncomeForFemales() throws Exception {
     Integer maximumIncomeForFemales = exercises02.getMaximumIncomeForFemales(statistics);
-    assertThat( maximumIncomeForFemales, is (345100));
+    assertThat(maximumIncomeForFemales, is(345100));
   }
 
   @Test
@@ -51,12 +50,12 @@ public class Exercise02ImplTest {
     assertThat(minYear, is(1997));
   }
 
-    @Test
-    public void testGetMaximum() throws Exception {
-        IncomeStatistics maximum = exercises02.getMaximum(statistics);
-        assertThat(maximum.year, is(2011));
-        assertThat(maximum.sex, is(Gender.male));
-        assertThat(maximum.county, is("Rogaland"));
-        assertThat(maximum.averageIncome, is(530600));
-    }
+  @Test
+  public void testGetMaximum() throws Exception {
+    IncomeStatistics maximum = exercises02.getMaximum(statistics);
+    assertThat(maximum.year, is(2011));
+    assertThat(maximum.sex, is(Gender.male));
+    assertThat(maximum.county, is("Rogaland"));
+    assertThat(maximum.averageIncome, is(530600));
+  }
 }

@@ -15,18 +15,18 @@ public class Exercise02Impl implements Exercises02 {
     OptionalInt max = stats.stream()
         .mapToInt(is -> is.averageIncome)
         .max();
-    System.out.println("Max income: " + max.getAsInt() );
-    return max.orElse( -1 );
+    System.out.println("Max income: " + max.getAsInt());
+    return max.orElse(-1);
   }
 
   @Override
   public Integer getMinimumIncomeIn2011(List<IncomeStatistics> stats) {
     OptionalInt min = stats.stream()
-        .filter( is -> is.year == 2011 )
+        .filter(is -> is.year == 2011)
         .mapToInt(is -> is.averageIncome)
         .min();
     System.out.println("Minimum income in 2011: " + min.getAsInt());
-    return min.orElse( -1 );
+    return min.orElse(-1);
   }
 
   @Override
@@ -36,14 +36,14 @@ public class Exercise02Impl implements Exercises02 {
         .mapToInt(is -> is.averageIncome)
         .max();
     System.out.println("Maximum income for females: " + max.getAsInt());
-    return max.orElse( -1 );
+    return max.orElse(-1);
   }
 
   @Override
   public Integer getYearOfMinimumIncomeForMalesInHordaland(List<IncomeStatistics> stats) {
     Optional<IncomeStatistics> hordaland = stats.stream()
         .filter(Util::isMale)
-        .filter( Util.isCounty("Hordaland") )
+        .filter(Util.isCounty("Hordaland"))
         .sorted(Util::compareByIncome)
         .findFirst();
     System.out.println("Year with minimum income for males in Hordaland: " + hordaland.get().year);

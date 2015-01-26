@@ -14,31 +14,36 @@ import java.util.stream.LongStream;
 
 public class Exercise03Impl implements Exercises03 {
 
-    @Override
-    public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> stats) {
-        return stats.stream().filter(is->is.averageIncome>400000).findFirst();
-    }
-
-    @Override
-    public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit) {
-        return stats.stream().filter(is->is.averageIncome>limit).collect(Collectors.toList());
-    }
+  @Override
+  public Optional<IncomeStatistics> findFirstAbove400k(List<IncomeStatistics> stats) {
+    return stats.stream()
+        .filter(is -> is.averageIncome > 400000)
+        .findFirst();
+  }
 
   @Override
-  public List<FamilyIncome> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year){
+  public List<IncomeStatistics> allAbove(List<IncomeStatistics> stats, int limit) {
+    return stats.stream()
+        .filter(is -> is.averageIncome > limit)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<FamilyIncome> getSumPerCountyForYear(List<IncomeStatistics> stats, Integer year) {
     Map<String, List<IncomeStatistics>> collect = stats.stream()
         .filter(Util.isYear(year))
         .collect(Collectors.groupingBy(is -> is.county));
 
     List<FamilyIncome> summed = collect.entrySet().stream()
-        .map(entry -> new FamilyIncome(entry.getKey(), year, sumOfIncomes( entry.getValue() )))
-        .collect( Collectors.toList());
+        .map((Map.Entry<String, List<IncomeStatistics>> entry) -> new FamilyIncome(entry.getKey(), year, sumOfIncomes(entry.getValue())))
+        .collect(Collectors.toList());
     return summed;
   }
 
   @Override
   public IncomeStatisticsSplitOnGender splitOnGender(List<IncomeStatistics> stats) {
-    Map<Boolean, List<IncomeStatistics>> split = stats.stream().collect(Collectors.partitioningBy(is -> Gender.female == is.sex));
+    Map<Boolean, List<IncomeStatistics>> split = stats.stream()
+        .collect(Collectors.partitioningBy(is -> Gender.female == is.sex));
 
     return new IncomeStatisticsSplitOnGender(split.get(true), split.get(false));
   }
@@ -72,7 +77,8 @@ public class Exercise03Impl implements Exercises03 {
 
   @Override
   public Map<String, List<IncomeStatistics>> groupedByCounty(List<IncomeStatistics> stats) {
-    Map<String, List<IncomeStatistics>> grouped = stats.stream().collect(Collectors.groupingBy(is -> is.county));
+    Map<String, List<IncomeStatistics>> grouped = stats.stream()
+        .collect(Collectors.groupingBy(is -> is.county));
     return grouped;
   }
 
@@ -81,8 +87,7 @@ public class Exercise03Impl implements Exercises03 {
     return LongStream.iterate(start, s -> s + difference);
   }
 
-  private Integer sumOfIncomes(List<IncomeStatistics> stats){
+  private Integer sumOfIncomes(List<IncomeStatistics> stats) {
     return stats.stream().mapToInt(is -> is.averageIncome).sum();
   }
-
 }

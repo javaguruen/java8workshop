@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class HelloWorldTest {
 
   @Test
-  public void helloWorld(){
+  public void helloWorld() {
     assertThat("Should never fail", true, is(true));
   }
 }

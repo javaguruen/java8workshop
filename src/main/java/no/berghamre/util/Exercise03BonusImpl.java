@@ -10,11 +10,13 @@ public class Exercise03BonusImpl implements Exercises03Bonus {
    * Hint: implement helper method below first
    * see: http://en.wikipedia.org/wiki/Look-and-say_sequence
    */
-  @Override public Stream<String> lookAndSay() {
+  @Override
+  public Stream<String> lookAndSay() {
     return Stream.<String>empty();
   }
 
-  @Override public LongStream fibonacci() {
+  @Override
+  public LongStream fibonacci() {
     return no.berghamre.util.FibonacciGenerator.fibonacci();
   }
 
